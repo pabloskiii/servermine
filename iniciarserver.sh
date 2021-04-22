@@ -2,8 +2,6 @@
 
 #variables(la ram tiene que ser en el formato = (num)M/G)
 
-
-
 MINRAM=512M
 MAXRAM=2G
 

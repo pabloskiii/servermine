@@ -11,7 +11,6 @@ MAXRAM=2G
 #Instalación del server
 
 
-
 apt update
  
 apt upgrade -y
@@ -31,10 +30,12 @@ cd home/$USER/servidorminecraft/server
 java -jar home/$USER/servidorminecraft/forge-1.16.5-36.1.6-installer.jar --installServer
 
 
+#descargamos los mods
+
 
 
 
 
 #lanzar el servidor
 
-java -Xms$MINRAM -Xmx$MAXRAM -jar forge-1.16.5-36.1.6-universal.jar nogui >> home/$USER/servidorminecraft/logs
+java -Xms$MINRAM -Xmx$MAXRAM -jar forge-1.16.5-36.1.6-universal.jar nogui >> home/$USER/servidorminecraft/logs/log.txt
