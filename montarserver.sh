@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 #variables(la ram tiene que ser en el formato = (num)M/G)
 
