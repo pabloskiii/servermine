@@ -5,20 +5,18 @@
 
 
 MINRAM=512M
-MAXRAM=2G
-USUARIO=ubuntu
+MAXRAM=1024M
+USUARIO=pablo
 
 
 #Instalación del server
 
-
+sudo add-apt-repository ppa:linuxuprising/java
 apt update
  
 apt upgrade -y
 
-apt install default-jdk -y
-
-apt install default-jre -y
+sudo apt install oracle-java10-installer
 
 apt install zip -y
 
@@ -43,10 +41,14 @@ unzip /home/$USUARIO/servermine/mods/modsmc.zip -d /home/$USUARIO/servidorminecr
 
 #lanzar el servidor
 
-cd /home
+cd /home/$USUARIO
 
-chmod -R 777 servidorminecraft
+chmod -R 777 /home/$USUARIO/servidorminecraft
+
+cd /home/$USUARIO/servidorminecraft/server
 
 screen -dmS minecraft java -Xms$MINRAM -Xmx$MAXRAM -jar forge-1.16.5-36.1.6.jar nogui >> /home/$USUARIO/servidorminecraft/logs/log.txt
 
 screen -S minecraft -p 0 -X stuff "stop^M"
+
+sed -i "s/false/true" eula.txt
