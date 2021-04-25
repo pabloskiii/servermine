@@ -6,6 +6,7 @@
 
 MINRAM=512M
 MAXRAM=2G
+USUARIO=ubuntu
 
 
 #Instalación del server
@@ -15,29 +16,37 @@ apt update
  
 apt upgrade -y
 
-apt install default-jdk
+apt install default-jdk -y
 
-apt install default-jre
+apt install default-jre -y
+
+apt install zip -y
 
 
-mkdir home/$USER/servidorminecraft home/$USER/servidorminecraft/server home/$USER/servidorminecraft/modsbruto home/$USER/servidorminecraft/logs
-cd home/$USER/servidorminecraft
+mkdir /home/$USUARIO/servidorminecraft /home/$USUARIO/servidorminecraft/server /home/$USUARIO/servidorminecraft/modsbruto /home/$USUARIO/servidorminecraft/logs
+cd /home/$USUARIO/servidorminecraft
+
+rm -rf forge-1.16.5-36.1.6-installer.jar
 
 wget https://maven.minecraftforge.net/net/minecraftforge/forge/1.16.5-36.1.6/forge-1.16.5-36.1.6-installer.jar
 
 
-cd home/$USER/servidorminecraft/server
-java -jar home/$USER/servidorminecraft/forge-1.16.5-36.1.6-installer.jar --installServer >> home/$USER/servidorminecraft/logs/loginstall.txt
+cd /home/$USUARIO/servidorminecraft/server
+java -jar /home/$USUARIO/servidorminecraft/forge-1.16.5-36.1.6-installer.jar --installServer >> /home/$USUARIO/servidorminecraft/logs/loginstall.txt
 
 
 
 #añadimos los mods
 
-unzip home/$USER/servermine/mods/modsmc.zip -d home/$USER/servidorminecraft/server/mods
+unzip /home/$USUARIO/servermine/mods/modsmc.zip -d /home/$USUARIO/servidorminecraft/server/mods
 
 
 #lanzar el servidor
 
-screen -dmS minecraft java -Xms$MINRAM -Xmx$MAXRAM -jar forge-1.16.5-36.1.6-universal.jar nogui >> home/$USER/servidorminecraft/logs/log.txt
+cd /home
+
+chmod -R 777 servidorminecraft
+
+screen -dmS minecraft java -Xms$MINRAM -Xmx$MAXRAM -jar forge-1.16.5-36.1.6.jar nogui >> /home/$USUARIO/servidorminecraft/logs/log.txt
 
 screen -S minecraft -p 0 -X stuff "stop^M"
