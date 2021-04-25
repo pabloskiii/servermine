@@ -27,15 +27,17 @@ wget https://maven.minecraftforge.net/net/minecraftforge/forge/1.16.5-36.1.6/for
 
 
 cd home/$USER/servidorminecraft/server
-java -jar home/$USER/servidorminecraft/forge-1.16.5-36.1.6-installer.jar --installServer
-
-
-#descargamos los mods
+java -jar home/$USER/servidorminecraft/forge-1.16.5-36.1.6-installer.jar --installServer >> home/$USER/servidorminecraft/logs/loginstall.txt
 
 
 
+#añadimos los mods
+
+unzip home/$USER/servermine/mods/modsmc.zip -d home/$USER/servidorminecraft/server/mods
 
 
 #lanzar el servidor
 
-java -Xms$MINRAM -Xmx$MAXRAM -jar forge-1.16.5-36.1.6-universal.jar nogui >> home/$USER/servidorminecraft/logs/log.txt
+screen -dmS minecraft java -Xms$MINRAM -Xmx$MAXRAM -jar forge-1.16.5-36.1.6-universal.jar nogui >> home/$USER/servidorminecraft/logs/log.txt
+
+screen -S minecraft -p 0 -X stuff "stop^M"
